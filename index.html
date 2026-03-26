@@ -448,6 +448,16 @@
 
   .about-text p strong { color: var(--text); font-weight: 500; }
 
+  .about-photo {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(0,229,160,0.3);
+    box-shadow: 0 0 40px rgba(0,229,160,0.1);
+    margin-bottom: 28px;
+    display: block;
+  }
+
   .about-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -750,6 +760,7 @@
   <h2 class="section-title">Sobre mí</h2>
   <div class="about-grid">
     <div class="about-text">
+      <img src="foto_cv.png" alt="Manuel Villaverde" class="about-photo">
       <p>Soy <strong>Manuel Villaverde</strong>, desarrollador de software de Buenos Aires, Argentina. Me formé en la <strong>UTN</strong> donde desarrollé proyectos reales en equipo e individualmente, desde sistemas de gestión hasta aplicaciones de escritorio.</p>
       <p>Mi stack principal gira en torno al ecosistema <strong>.NET y C#</strong>, con sólidos conocimientos en bases de datos relacionales con <strong>SQL Server</strong> y programación orientada a objetos.</p>
       <p>Tengo un canal de YouTube donde explico mis proyectos y me gusta compartir lo que aprendo. Estoy buscando mi primera oportunidad laboral para seguir creciendo en el mundo del desarrollo de software.</p>
