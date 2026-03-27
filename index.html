@@ -601,6 +601,74 @@
     .contact-wrapper { padding: 40px 24px; }
     footer { padding: 30px 24px; }
   }
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.cert-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,229,160,0.3);
+}
+
+.cert-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.cert-info {
+  padding: 16px;
+}
+
+.cert-info h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.cert-info span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+
+.cert-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.cert-modal img {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+}
+
+.cert-modal .close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+}
+
 </style>
 </head>
 <body>
@@ -796,6 +864,67 @@
 
 <div class="divider"></div>
 
+
+<div class="divider"></div>
+
+<!-- CERTIFICACIONES -->
+<section class="section fade-in" id="certificaciones">
+  <p class="section-label">Formación</p>
+  <h2 class="section-title">Algunas de mis certificaciones</h2>
+
+  <div class="cert-grid">
+
+    <div class="cert-card">
+      <img src="Fundamentos-de-la-Programacion-MaxiPrograma.png">
+      <div class="cert-info">
+        <h3>Fundamentos de la Programación</h3>
+        <span>Maxi Programa</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <img src="SQL-Base-de-Datos-MaxiPrograma.png">
+      <div class="cert-info">
+        <h3>Bases de Datos SQL</h3>
+        <span>Maxi Programa</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <img src="C#-nivel-1-MaxiPrograma.png">
+      <div class="cert-info">
+        <h3>C# Nivel 1</h3>
+        <span>Maxi Programa</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <img src="C#-Nivel-2-MaxiPrograma.png">
+      <div class="cert-info">
+        <h3>C# Nivel 2</h3>
+        <span>Maxi Programa</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <img src="Fundamentos-de-nube-AWS.png">
+      <div class="cert-info">
+        <h3>Fundamentos de Nube</h3>
+        <span>AWS</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <img src="Git-y-Github-Alura-Latam.png">
+      <div class="cert-info">
+        <h3>Git y GitHub</h3>
+        <span>Alura</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACTO -->
 <section class="section fade-in" id="contacto">
   <div class="contact-wrapper">
@@ -837,5 +966,12 @@
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
+
+<!-- MODAL -->
+<div id="certModal" class="cert-modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
 </body>
 </html>
