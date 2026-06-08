@@ -31,7 +31,6 @@
     overflow-x: hidden;
   }
 
-  /* NOISE TEXTURE OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -42,7 +41,6 @@
     opacity: 0.4;
   }
 
-  /* GLOW BLOBS */
   .blob {
     position: fixed;
     border-radius: 50%;
@@ -209,7 +207,7 @@
     background: linear-gradient(90deg, var(--accent), transparent);
   }
 
-  /* STACK PILLS */
+  /* STACK */
   .stack-section {
     position: relative;
     z-index: 1;
@@ -257,7 +255,7 @@
     border-radius: 50%;
   }
 
-  /* SECTION HEADER */
+  /* SECTION */
   .section {
     position: relative;
     z-index: 1;
@@ -338,6 +336,27 @@
 
   .project-card:hover .project-thumb img { transform: scale(1.04); }
 
+  /* Placeholder thumb for cards without image */
+  .project-thumb-placeholder {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-thumb-placeholder .thumb-icon {
+    font-size: 48px;
+    opacity: 0.15;
+  }
+
+  .project-thumb-placeholder .thumb-gradient {
+    position: absolute;
+    inset: 0;
+  }
+
   .play-overlay {
     position: absolute;
     inset: 0;
@@ -351,6 +370,24 @@
 
   .project-card:hover .play-overlay { opacity: 1; }
 
+  /* For deployed app cards: show overlay on hover too */
+  .project-card:hover .link-overlay { opacity: 1; }
+
+  .link-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
   .play-btn {
     width: 56px; height: 56px;
     border-radius: 50%;
@@ -363,7 +400,6 @@
   }
 
   .project-card:hover .play-btn { transform: scale(1); }
-
   .play-btn svg { margin-left: 3px; }
 
   .project-info { padding: 24px; }
@@ -389,6 +425,10 @@
   .tag-sql { background: rgba(204,52,52,0.3); color: #f97583; border: 1px solid rgba(204,52,52,0.4); }
   .tag-net { background: rgba(81,43,212,0.3); color: #b392f0; border: 1px solid rgba(81,43,212,0.4); }
   .tag-js { background: rgba(255,183,0,0.15); color: #ffdf5d; border: 1px solid rgba(255,183,0,0.3); }
+  .tag-mvc { background: rgba(0,229,160,0.12); color: #00e5a0; border: 1px solid rgba(0,229,160,0.3); }
+  .tag-ef { background: rgba(255,120,50,0.15); color: #ff9e64; border: 1px solid rgba(255,120,50,0.3); }
+  .tag-live { background: rgba(0,229,160,0.15); color: #00e5a0; border: 1px solid rgba(0,229,160,0.35); }
+  .tag-pokemon { background: rgba(255,200,0,0.15); color: #ffd700; border: 1px solid rgba(255,200,0,0.3); }
 
   .project-title {
     font-family: 'Syne', sans-serif;
@@ -429,6 +469,30 @@
   .project-type {
     font-size: 12px;
     color: var(--muted);
+  }
+
+  /* LIVE BADGE */
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,229,160,0.1);
+    border: 1px solid rgba(0,229,160,0.25);
+    border-radius: 100px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .live-badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
   }
 
   /* ABOUT */
@@ -487,6 +551,109 @@
   }
 
   .stat-label { font-size: 13px; color: var(--muted); }
+
+  /* CERTIFICATIONS */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .cert-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .cert-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,229,160,0.3);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .cert-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  .cert-info { padding: 16px; }
+
+  .cert-info h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .cert-info span {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .cert-visual {
+    width: 100%;
+    height: 140px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cert-visual-icon {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .cert-visual-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  /* CTA ver todas certificaciones */
+  .cert-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+  }
+
+  .cert-linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: rgba(10,102,194,0.12);
+    border: 1px solid rgba(10,102,194,0.35);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #6ab0f5;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.25s;
+  }
+
+  .cert-linkedin-btn:hover {
+    background: rgba(10,102,194,0.22);
+    border-color: rgba(10,102,194,0.6);
+    color: #90c4ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(10,102,194,0.2);
+  }
+
+  .cert-linkedin-btn svg { flex-shrink: 0; }
 
   /* CONTACT */
   .contact-wrapper {
@@ -568,7 +735,6 @@
 
   footer span { color: var(--accent); }
 
-  /* DIVIDER */
   .divider {
     height: 1px;
     background: var(--border);
@@ -591,6 +757,37 @@
   }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+  /* MODAL */
+  .cert-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.92);
+  }
+
+  .cert-modal img {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 12px;
+  }
+
+  .cert-modal .close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .cert-modal .close:hover { color: var(--accent); }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
@@ -600,75 +797,8 @@
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .contact-wrapper { padding: 40px 24px; }
     footer { padding: 30px 24px; }
+    .projects-grid { grid-template-columns: 1fr; }
   }
-
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.cert-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-
-.cert-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0,229,160,0.3);
-}
-
-.cert-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.cert-info {
-  padding: 16px;
-}
-
-.cert-info h3 {
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-
-.cert-info span {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-
-.cert-modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  padding-top: 60px;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.9);
-}
-
-.cert-modal img {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 12px;
-}
-
-.cert-modal .close {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  color: #fff;
-  font-size: 32px;
-  cursor: pointer;
-}
-
 </style>
 </head>
 <body>
@@ -682,6 +812,7 @@
   <ul class="nav-links">
     <li><a href="#proyectos">Proyectos</a></li>
     <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#certificaciones">Certificaciones</a></li>
     <li><a href="#contacto">Contacto</a></li>
     <li><a href="https://github.com/manollum" target="_blank">GitHub</a></li>
   </ul>
@@ -693,7 +824,7 @@
     <div class="hero-badge">Disponible para trabajar</div>
     <h1>Hola, soy<br><span class="highlight">Manuel Villaverde</span></h1>
     <p class="hero-desc">
-      Desarrollador de software especializado en <strong>.NET y C#</strong>, con formación en la <strong>UTN</strong> como <strong>Técnico superior en Programación.</strong> Experiencia en el desarrollo de sistemas de gestión y aplicaciones de escritorio orientadas a resolver problemas reales.
+      Desarrollador de software especializado en <strong>.NET y C#</strong>, con formación en la <strong>UTN</strong> como <strong>Técnico Superior en Programación.</strong> Llegué a la programación con una mirada práctica: el software existe para resolver problemas reales de personas, procesos y negocios.
     </p>
     <div class="hero-actions">
       <a href="#proyectos" class="btn btn-primary">
@@ -723,11 +854,14 @@
     <div class="pill"><div class="pill-dot" style="background:#79b8ff"></div>C++</div>
     <div class="pill"><div class="pill-dot" style="background:#b392f0"></div>.NET Framework</div>
     <div class="pill"><div class="pill-dot" style="background:#f97583"></div>SQL Server</div>
-    <div class="pill"><div class="pill-dot" style="background:#00e5a0"></div>ASP.NET / WebForms</div>
+    <div class="pill"><div class="pill-dot" style="background:#00e5a0"></div>ASP.NET MVC</div>
+    <div class="pill"><div class="pill-dot" style="background:#00b8ff"></div>Entity Framework</div>
     <div class="pill"><div class="pill-dot" style="background:#ffdf5d"></div>JavaScript</div>
     <div class="pill"><div class="pill-dot" style="background:#ff9e64"></div>HTML & CSS</div>
     <div class="pill"><div class="pill-dot" style="background:#a9b7c6"></div>Visual Studio</div>
     <div class="pill"><div class="pill-dot" style="background:#f0f0f0"></div>POO</div>
+    <div class="pill"><div class="pill-dot" style="background:#f9a825"></div>Git & GitHub</div>
+    <div class="pill"><div class="pill-dot" style="background:#4caf50"></div>ASP Identity</div>
   </div>
 </div>
 
@@ -740,7 +874,86 @@
 
   <div class="projects-grid">
 
-    <!-- Clínica -->
+    <!-- POKEMON VAULT — App deployada -->
+    <a class="project-card" href="http://pokemonvault.runasp.net/Pokemon" target="_blank">
+      <div class="project-thumb-placeholder">
+        <div class="thumb-gradient" style="background: linear-gradient(135deg, rgba(255,200,0,0.12) 0%, rgba(220,50,50,0.12) 100%);"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.7">
+            <circle cx="26" cy="26" r="24" stroke="#ffd700" stroke-width="2.5"/>
+            <line x1="2" y1="26" x2="50" y2="26" stroke="#ffd700" stroke-width="2.5"/>
+            <circle cx="26" cy="26" r="6" fill="#111118" stroke="#ffd700" stroke-width="2.5"/>
+            <path d="M2 26 A24 24 0 0 1 50 26" fill="rgba(255,50,50,0.18)"/>
+          </svg>
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:rgba(255,215,0,0.7);letter-spacing:1px;">Pokémon Vault</span>
+        </div>
+        <div class="link-overlay">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Abrir app
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag tag-csharp">C#</span>
+          <span class="tag tag-mvc">MVC</span>
+          <span class="tag tag-ef">Entity Framework</span>
+          <span class="tag tag-live">
+            <span class="live-badge">Live</span>
+          </span>
+        </div>
+        <h3 class="project-title">Pokémon Vault</h3>
+        <p class="project-desc">Aplicación web deployada en <strong style="color:var(--text)">MonsterASP.NET</strong>. Construida con ASP.NET MVC y Entity Framework. Consultá, filtrá y explorá Pokémon desde una plataforma real en producción.</p>
+        <div class="project-footer">
+          <span class="watch-link">
+            Ver app en vivo
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+          <span class="project-type">Deployado · MonsterASP</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- PLATAFORMA DE PELÍCULAS -->
+    <a class="project-card" href="https://www.youtube.com/watch?v=ZMfItl64_1A&feature=youtu.be" target="_blank">
+      <div class="project-thumb-placeholder">
+        <div class="thumb-gradient" style="background: linear-gradient(135deg, rgba(104,33,122,0.18) 0%, rgba(0,184,255,0.1) 100%);"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.6">
+            <rect x="2" y="8" width="44" height="32" rx="4" stroke="#c792ea" stroke-width="2.5"/>
+            <path d="M18 17l14 7-14 7V17z" fill="#c792ea"/>
+            <rect x="2" y="8" width="7" height="5" fill="rgba(104,33,122,0.5)" rx="1"/>
+            <rect x="39" y="8" width="7" height="5" fill="rgba(104,33,122,0.5)" rx="1"/>
+            <rect x="2" y="35" width="7" height="5" fill="rgba(104,33,122,0.5)" rx="1"/>
+            <rect x="39" y="35" width="7" height="5" fill="rgba(104,33,122,0.5)" rx="1"/>
+          </svg>
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:rgba(199,146,234,0.7);letter-spacing:0.5px;">Plataforma de Películas</span>
+        </div>
+        <div class="play-overlay">
+          <div class="play-btn">
+            <svg width="20" height="20" fill="#000" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag tag-csharp">C#</span>
+          <span class="tag tag-mvc">MVC</span>
+          <span class="tag tag-ef">Entity Framework</span>
+          <span class="tag tag-net">Identity</span>
+        </div>
+        <h3 class="project-title">Plataforma de Películas</h3>
+        <p class="project-desc">Aplicación web construida con <strong style="color:var(--text)">ASP.NET MVC, Entity Framework Core e Identity</strong>. Gestión de usuarios con roles, catálogo de películas, autenticación y autorización completa.</p>
+        <div class="project-footer">
+          <span class="watch-link">
+            Ver demo en YouTube
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+          <span class="project-type">Proyecto individual</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CLÍNICA -->
     <a class="project-card" href="https://youtu.be/KhObQaFOzBQ" target="_blank">
       <div class="project-thumb">
         <img src="Sistema_de_gestion_-_Clinica.png" alt="Sistema de Gestión Clínica Médica">
@@ -768,7 +981,7 @@
       </div>
     </a>
 
-    <!-- Restaurante -->
+    <!-- RESTAURANTE -->
     <a class="project-card" href="https://youtu.be/5nSN0BosQ_M" target="_blank">
       <div class="project-thumb">
         <img src="sist_de_gestion_c++.png" alt="Sistema de Gestión de Restaurante">
@@ -794,7 +1007,7 @@
       </div>
     </a>
 
-    <!-- Tienda -->
+    <!-- TIENDA -->
     <a class="project-card" href="https://youtu.be/4R1hscvieKU" target="_blank">
       <div class="project-thumb">
         <img src="App_Escritorio_-_tienda_tecnológica_(foto).png" alt="Aplicación de Escritorio Tienda Tecnológica">
@@ -821,6 +1034,21 @@
       </div>
     </a>
 
+    <!-- VER MÁS EN LINKEDIN -->
+    <a class="project-card" href="https://www.linkedin.com/in/manuel-villaverde-programacion/details/projects/" target="_blank" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:280px;border-style:dashed;border-color:rgba(10,102,194,0.3);background:rgba(10,102,194,0.04);">
+      <div style="text-align:center;padding:40px 24px;">
+        <div style="width:56px;height:56px;border-radius:50%;background:rgba(10,102,194,0.12);border:1px solid rgba(10,102,194,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <svg width="24" height="24" fill="#6ab0f5" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:#6ab0f5;margin-bottom:8px;">+10 proyectos más</p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;max-width:220px;margin:0 auto 20px;">Ver el portfolio completo en LinkedIn con todos los proyectos documentados.</p>
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#6ab0f5;">
+          Ver en LinkedIn
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -833,9 +1061,10 @@
   <div class="about-grid">
     <div class="about-text">
       <img src="foto_cv.png" alt="Manuel Villaverde" class="about-photo">
-      <p>Soy <strong>Manuel Villaverde</strong>, desarrollador de software de Buenos Aires, Argentina. Me formé en la <strong>UTN</strong> donde desarrollé proyectos reales en equipo e individualmente, desde sistemas de gestión hasta aplicaciones de escritorio.</p>
-      <p>Mi stack principal gira en torno al ecosistema <strong>.NET y C#</strong>, con sólidos conocimientos en bases de datos relacionales con <strong>SQL Server</strong> y programación orientada a objetos.</p>
-      <p>Tengo un canal de YouTube donde explico mis proyectos y me gusta compartir lo que aprendo. Estoy buscando mi primera oportunidad laboral para seguir creciendo en el mundo del desarrollo de software.</p>
+      <p>Soy <strong>Manuel Villaverde</strong>, desarrollador de software de Buenos Aires, Argentina. Me formé en la <strong>UTN</strong> como Técnico Superior en Programación, donde construí proyectos reales en equipo e individualmente.</p>
+      <p>Mi stack principal gira en torno al ecosistema <strong>.NET y C#</strong>: ASP.NET MVC, Entity Framework Core, Identity y SQL Server. Soy <strong>autodidacta</strong> por convicción — siempre ampliando lo aprendido en la carrera con cursos, proyectos propios y práctica constante.</p>
+      <p>Llegué a la programación desde entornos de alta demanda, coordinando tareas y resolviendo problemas bajo presión. Eso me dio una mirada práctica: entiendo que el software no existe solo para "funcionar", sino para resolver problemas reales.</p>
+      <p>Tengo un canal de YouTube donde explico mis proyectos y comparto parte de mi aprendizaje. Estoy abierto a oportunidades como desarrollador <strong>.NET junior / trainee</strong>, especialmente en equipos donde pueda aprender, aportar con compromiso y seguir creciendo.</p>
       <br>
       <a href="https://github.com/manollum" target="_blank" class="btn btn-secondary" style="display:inline-flex">
         Ver GitHub completo →
@@ -843,27 +1072,24 @@
     </div>
     <div class="about-stats">
       <div class="stat-card">
-        <div class="stat-num">3+</div>
-        <div class="stat-label">Proyectos completos</div>
+        <div class="stat-num">+10</div>
+        <div class="stat-label">Proyectos desarrollados</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">2+</div>
-        <div class="stat-label">Años estudiando</div>
+        <div class="stat-num">+3</div>
+        <div class="stat-label">Años estudiando y practicando</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">UTN</div>
         <div class="stat-label">Formación universitaria</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">BsAs</div>
-        <div class="stat-label">Buenos Aires, Argentina</div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Autodidacta por convicción</div>
       </div>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
-
 
 <div class="divider"></div>
 
@@ -874,48 +1100,110 @@
 
   <div class="cert-grid">
 
+    <!-- Fundamentos de la Programación -->
     <div class="cert-card">
-      <img src="Fundamentos-de-la-Programacion-MaxiPrograma.png">
+      <div class="cert-visual" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+        <div class="cert-visual-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M10 12L4 18l6 6" stroke="#00e5a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M26 12l6 6-6 6" stroke="#00b8ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 8l-6 20" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cert-visual-bg" style="background: radial-gradient(circle at 70% 30%, rgba(0,229,160,0.12), transparent 60%)"></div>
+        <div class="cert-visual-dots"></div>
+      </div>
       <div class="cert-info">
         <h3>Fundamentos de la Programación</h3>
         <span>Maxi Programa</span>
       </div>
     </div>
 
+    <!-- SQL -->
     <div class="cert-card">
-      <img src="SQL-Base-de-Datos-MaxiPrograma.png">
+      <div class="cert-visual" style="background: linear-gradient(135deg, #1a0f0f 0%, #2a1010 100%);">
+        <div class="cert-visual-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <ellipse cx="18" cy="10" rx="12" ry="4.5" stroke="#f97583" stroke-width="2"/>
+            <path d="M6 10v8c0 2.5 5.4 4.5 12 4.5S30 20.5 30 18v-8" stroke="#f97583" stroke-width="2"/>
+            <path d="M6 18v8c0 2.5 5.4 4.5 12 4.5S30 28.5 30 26v-8" stroke="rgba(249,117,131,0.5)" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="cert-visual-bg" style="background: radial-gradient(circle at 30% 70%, rgba(249,117,131,0.15), transparent 60%)"></div>
+      </div>
       <div class="cert-info">
         <h3>Bases de Datos SQL</h3>
         <span>Maxi Programa</span>
       </div>
     </div>
 
+    <!-- C# Nivel 1 -->
     <div class="cert-card">
-      <img src="CS-nivel-1-MaxiPrograma.png">
+      <div class="cert-visual" style="background: linear-gradient(135deg, #130d1e 0%, #1e1030 100%);">
+        <div class="cert-visual-icon">
+          <svg width="40" height="36" viewBox="0 0 40 36" fill="none">
+            <text x="2" y="28" font-family="monospace" font-weight="700" font-size="28" fill="#c792ea">C#</text>
+            <text x="30" y="18" font-family="monospace" font-size="11" fill="rgba(199,146,234,0.45)">01</text>
+          </svg>
+        </div>
+        <div class="cert-visual-bg" style="background: radial-gradient(circle at 60% 40%, rgba(104,33,122,0.2), transparent 60%)"></div>
+      </div>
       <div class="cert-info">
         <h3>C# Nivel 1</h3>
         <span>Maxi Programa</span>
       </div>
     </div>
 
+    <!-- C# Nivel 2 -->
     <div class="cert-card">
-      <img src="CS-Nivel-2-MaxiPrograma.png">
+      <div class="cert-visual" style="background: linear-gradient(135deg, #0d1320 0%, #101e35 100%);">
+        <div class="cert-visual-icon">
+          <svg width="40" height="36" viewBox="0 0 40 36" fill="none">
+            <text x="2" y="28" font-family="monospace" font-weight="700" font-size="28" fill="#b392f0">C#</text>
+            <text x="30" y="18" font-family="monospace" font-size="11" fill="rgba(179,146,240,0.45)">02</text>
+          </svg>
+        </div>
+        <div class="cert-visual-bg" style="background: radial-gradient(circle at 30% 60%, rgba(81,43,212,0.2), transparent 60%)"></div>
+      </div>
       <div class="cert-info">
         <h3>C# Nivel 2</h3>
         <span>Maxi Programa</span>
       </div>
     </div>
 
+    <!-- AWS -->
     <div class="cert-card">
-      <img src="Fundamentos-de-nube-AWS.png">
+      <div class="cert-visual" style="background: linear-gradient(135deg, #0f1a10 0%, #142010 100%);">
+        <div class="cert-visual-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <!-- nube -->
+            <path d="M10 24a6 6 0 010-12 6 6 0 0111.5-2A5 5 0 0128 20a4 4 0 010 4H10z" stroke="#ff9e64" stroke-width="2" fill="none"/>
+            <!-- flechita arriba (cloud upload) -->
+            <path d="M18 28v-6M15 25l3-3 3 3" stroke="#ff9e64" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cert-visual-bg" style="background: radial-gradient(circle at 65% 35%, rgba(255,158,100,0.15), transparent 60%)"></div>
+      </div>
       <div class="cert-info">
         <h3>Fundamentos de Nube</h3>
         <span>AWS</span>
       </div>
     </div>
 
+    <!-- Git & GitHub -->
     <div class="cert-card">
-      <img src="Git-y-Github-Alura-Latam.png">
+      <div class="cert-visual" style="background: linear-gradient(135deg, #111010 0%, #1c1010 100%);">
+        <div class="cert-visual-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="10" cy="10" r="3" stroke="#f0f0f0" stroke-width="2"/>
+            <circle cx="26" cy="10" r="3" stroke="#f0f0f0" stroke-width="2"/>
+            <circle cx="10" cy="26" r="3" stroke="#f0f0f0" stroke-width="2"/>
+            <path d="M10 13v10" stroke="rgba(240,240,240,0.4)" stroke-width="2"/>
+            <path d="M13 10h4a6 6 0 016 6v1" stroke="rgba(240,240,240,0.4)" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="cert-visual-bg" style="background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 60%)"></div>
+      </div>
       <div class="cert-info">
         <h3>Git y GitHub</h3>
         <span>Alura</span>
@@ -923,7 +1211,18 @@
     </div>
 
   </div>
+
+  <!-- CTA LinkedIn certificaciones -->
+  <div class="cert-cta">
+    <a href="https://www.linkedin.com/in/manuel-villaverde-programacion/details/certifications/" target="_blank" class="cert-linkedin-btn">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      Ver todas mis certificaciones en LinkedIn
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- CONTACTO -->
 <section class="section fade-in" id="contacto">
@@ -955,23 +1254,39 @@
   <p>Diseñado y desarrollado por <span>Manuel Villaverde</span> · Buenos Aires, Argentina</p>
 </footer>
 
+<!-- MODAL CERTIFICACIONES -->
+<div id="certModal" class="cert-modal" onclick="closeModal()">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
 <script>
+  // Intersection observer para fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
 
-<!-- MODAL -->
-<div id="certModal" class="cert-modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="modalImg">
-</div>
+  // Modal certificaciones
+  function openModal(src) {
+    const modal = document.getElementById('certModal');
+    document.getElementById('modalImg').src = src;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('certModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
 
 </body>
 </html>
